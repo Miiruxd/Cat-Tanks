@@ -21,13 +21,13 @@ public class FollowMousePosition : MonoBehaviour
 
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (mousePos.y < pivotPos.y)
-            mousePos.y = pivotPos.y;
-
-        if (mousePos.x < pivotPos.x)
+        if ((mousePos.x < pivotPos.x && mousePos.y > pivotPos.y) || (mousePos.x > pivotPos.x && mousePos.y < pivotPos.y))
+        {
             mousePos.x = pivotPos.x;
+            mousePos.y = pivotPos.y;
+        }
 
-        float rotation_angle_rad = Mathf.Atan2(mousePos.y - pivotPos.y, mousePos.x - pivotPos.x);
+        float rotation_angle_rad = Mathf.Atan2(Mathf.Abs(mousePos.y - pivotPos.y), Mathf.Abs(mousePos.x - pivotPos.x));
 
         transform.Rotate(0, 0, rotation_angle_rad * Mathf.Rad2Deg);
 
