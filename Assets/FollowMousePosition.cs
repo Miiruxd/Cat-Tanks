@@ -17,19 +17,30 @@ public class FollowMousePosition : MonoBehaviour
         if (mousePos == Camera.main.ScreenToWorldPoint(Input.mousePosition))
             return;
 
-        transform.rotation = homeRotation;
+        
 
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if ((mousePos.x < pivotPos.x && mousePos.y > pivotPos.y) || (mousePos.x > pivotPos.x && mousePos.y < pivotPos.y))
+        float rotation_angle_rad;
+
+        if (mousePos.x > pivotPos.x && mousePos.y < pivotPos.y) //fourth
         {
             mousePos.x = pivotPos.x;
             mousePos.y = pivotPos.y;
         }
 
-        float rotation_angle_rad = Mathf.Atan2(Mathf.Abs(mousePos.y - pivotPos.y), Mathf.Abs(mousePos.x - pivotPos.x));
+        if (mousePos.x < pivotPos.x && mousePos.y < pivotPos.y) //third
+            rotation_angle_rad = 90 * Mathf.Deg2Rad - Mathf.Atan2(Mathf.Abs(mousePos.y - pivotPos.y), Mathf.Abs(mousePos.x - pivotPos.x));
+        else if (mousePos.x < pivotPos.x && mousePos.y > pivotPos.y) //second
+            rotation_angle_rad = 90 * Mathf.Deg2Rad;
+        else //first
+            rotation_angle_rad = Mathf.Atan2(Mathf.Abs(mousePos.y - pivotPos.y), Mathf.Abs(mousePos.x - pivotPos.x));
 
-        transform.Rotate(0, 0, rotation_angle_rad * Mathf.Rad2Deg);
+        if (rotation_angle_rad < 1.047f)
+        {
+            transform.rotation = homeRotation;
+            transform.Rotate(0, 0, rotation_angle_rad * Mathf.Rad2Deg);
+        }
 
         //Debug.Log(transform.rotation.eulerAngles);
     }
