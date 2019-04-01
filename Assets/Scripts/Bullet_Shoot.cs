@@ -8,7 +8,7 @@ public class Bullet_Shoot : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D target)
     {
-        if (target.gameObject.tag == "FirePoint") GetComponent<Rigidbody2D>().AddForce(transform.right * bulletForce); 
+        if (target.gameObject.tag == "FirePoint") GetComponent<Rigidbody2D>().AddForce(transform.right * bulletForce);
     }
 }
   

@@ -14,10 +14,13 @@ public class FollowMousePosition : MonoBehaviour
 
     void Update()
     {
+        GameObject level_manager = GameObject.Find("Level Manager");
+        LevelManager manager = level_manager.GetComponent<LevelManager>();
+
+        if (manager.isGamePaused == true)
+            return;
         if (mousePos == Camera.main.ScreenToWorldPoint(Input.mousePosition))
             return;
-
-        
 
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
