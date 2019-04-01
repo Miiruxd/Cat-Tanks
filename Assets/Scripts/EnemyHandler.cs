@@ -6,6 +6,7 @@ public class EnemyHandler : MonoBehaviour
 {
     public Sprite deadSprite;
     Animator anim;
+    public GameObject levelManager;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -26,6 +27,7 @@ public class EnemyHandler : MonoBehaviour
     void Remove()
     {
         gameObject.SetActive(false);
+        levelManager.GetComponent<LevelManager>().TransitionCameraToTheLeft();
     }
 
     void Start()

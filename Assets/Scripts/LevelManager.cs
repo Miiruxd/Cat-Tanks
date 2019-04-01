@@ -6,19 +6,31 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public GameObject pauseMenu;
-    public GameObject camera;
+    public GameObject cam;
     internal bool isGamePaused;
+    public bool canShoot;
 
     void Start()
     {
         isGamePaused = false;
+        canShoot = false;
+        TransitionCameraToTheLeft();
+    }
+
+    public void TransitionCameraToTheLeft()
+    {
         InvokeRepeating("MoveCamera", 2.0f, 0.001f);
     }
 
     void MoveCamera()
     {
-        if (camera.transform.position.x > -6)
-            camera.GetComponent<Transform>().SetPositionAndRotation(new Vector3(camera.transform.position.x - 0.1f, camera.transform.position.y, camera.transform.position.z), camera.transform.rotation);
+        if (cam.transform.position.x > -6)
+            cam.GetComponent<Transform>().SetPositionAndRotation(new Vector3(cam.transform.position.x - 0.1f, cam.transform.position.y, cam.transform.position.z), cam.transform.rotation);
+        else
+        {
+            CancelInvoke();
+            canShoot = true;
+        }
     }
 
     void Update()
@@ -33,6 +45,10 @@ public class LevelManager : MonoBehaviour
             }
             else
                 HidePauseMenu();
+        }
+        if (Input.GetMouseButton(0))
+        {
+
         }
     }
 
