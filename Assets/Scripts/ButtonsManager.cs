@@ -7,6 +7,7 @@ public class ButtonsManager : MonoBehaviour
 {
     public void InitializeGame()
     {
+        SceneManager.UnloadSceneAsync(0);
         SceneManager.LoadScene(1);
     }
 

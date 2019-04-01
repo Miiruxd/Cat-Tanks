@@ -1,15 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject camera;
     internal bool isGamePaused;
 
     void Start()
     {
         isGamePaused = false;
+        InvokeRepeating("MoveCamera", 2.0f, 0.001f);
+    }
+
+    void MoveCamera()
+    {
+        if (camera.transform.position.x > -6)
+            camera.GetComponent<Transform>().SetPositionAndRotation(new Vector3(camera.transform.position.x - 0.1f, camera.transform.position.y, camera.transform.position.z), camera.transform.rotation);
     }
 
     void Update()
@@ -25,6 +34,13 @@ public class LevelManager : MonoBehaviour
             else
                 HidePauseMenu();
         }
+    }
+
+    public void InitializeMainMenu()
+    {
+        HidePauseMenu();
+        SceneManager.UnloadSceneAsync(1);
+        SceneManager.LoadScene(0);
     }
 
     public void HidePauseMenu()
