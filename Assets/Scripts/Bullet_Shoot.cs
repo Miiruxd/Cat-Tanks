@@ -10,5 +10,14 @@ public class Bullet_Shoot : MonoBehaviour
     {
         if (target.gameObject.tag == "FirePoint") GetComponent<Rigidbody2D>().AddForce(transform.right * bulletForce);
     }
+
+    void Update()
+    {
+
+        var rot = transform.rotation;
+        rot.z += -Time.deltaTime * 2 / 5;
+        transform.rotation = rot;
+
+    }
 }
   
