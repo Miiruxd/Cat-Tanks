@@ -23,6 +23,16 @@ public class ProjectileHandler : MonoBehaviour
         {
             Invoke("Remove", 1.0f);
         }
+
+        switch (collision.gameObject.tag)
+        {
+            case "Platform":
+                Score.scoreAmount += 20;
+                break;
+            case "Enemy":
+                Score.scoreAmount += 100;
+                break;
+        }
     }
 
     void Remove()
