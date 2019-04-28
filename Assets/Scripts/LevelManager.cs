@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject cam;
+    public GameObject swapPanel;
     internal bool isGamePaused;
     public bool canShoot;
 
@@ -45,6 +46,8 @@ public class LevelManager : MonoBehaviour
             }
             else
                 HidePauseMenu();
+            if (swapPanel.activeSelf == true)
+                swapPanel.SetActive(false);
         }
         if (Input.GetMouseButton(0))
         {
@@ -64,5 +67,31 @@ public class LevelManager : MonoBehaviour
         isGamePaused = false;
         Time.timeScale = 1.0f;
         pauseMenu.SetActive(false);
+    }
+
+    public void PauseGame()
+    {
+        isGamePaused = true;
+        Time.timeScale = 0.0f;
+    }
+
+    public void ResumeGame()
+    {
+        isGamePaused = false;
+        Time.timeScale = 1.0f;
+    }
+
+    public void ToggleSwapPanel()
+    {
+        if (swapPanel.activeSelf)
+        {
+            swapPanel.SetActive(false);
+            ResumeGame();
+        }
+        else
+        {
+            swapPanel.SetActive(true);
+            PauseGame();
+        }
     }
 }
