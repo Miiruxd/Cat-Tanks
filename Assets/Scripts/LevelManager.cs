@@ -63,8 +63,11 @@ public class LevelManager : MonoBehaviour
 
     public void InitializeMainMenu()
     {
-        HidePauseMenu();
-        SceneManager.UnloadSceneAsync(1);
+        //HidePauseMenu();
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+            SceneManager.UnloadSceneAsync(1);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(2))
+            SceneManager.UnloadSceneAsync(2);
         SceneManager.LoadScene(0);
     }
 

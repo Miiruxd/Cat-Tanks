@@ -13,7 +13,6 @@ public class Bullet_Shoot : MonoBehaviour
 
     void Update()
     {
-
         var rot = transform.rotation;
         rot.z += -Time.deltaTime * 2 / 5;
         transform.rotation = rot;
