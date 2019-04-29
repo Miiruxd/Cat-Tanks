@@ -5,11 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    public GameObject gun;
     public GameObject pauseMenu;
     public GameObject cam;
     public GameObject swapPanel;
     internal bool isGamePaused;
     public bool canShoot;
+
+    private Vector3 cat1Pos = new Vector3(0.5f, 0.62f, 0);
+    private Vector3 cat2Pos = new Vector3(0.79f, -0.43f, 0);
+    private Vector3 cat3Pos = new Vector3(0.4595337f, -0.1589674f, 0);
+    private Vector3 cat4Pos = new Vector3(0.67f, 0.05f, 0);
 
     void Start()
     {
@@ -93,5 +99,25 @@ public class LevelManager : MonoBehaviour
             swapPanel.SetActive(true);
             PauseGame();
         }
+    }
+
+    public void AdjustGunPositionCat1()
+    {
+        gun.GetComponent<Transform>().localPosition = cat1Pos;
+    }
+
+    public void AdjustGunPositionCat2()
+    {
+        gun.GetComponent<Transform>().localPosition = cat2Pos;
+    }
+
+    public void AdjustGunPositionCat3()
+    {
+        gun.GetComponent<Transform>().localPosition = cat3Pos;
+    }
+
+    public void AdjustGunPositionCat4()
+    {
+        gun.GetComponent<Transform>().localPosition = cat4Pos;
     }
 }

@@ -16,6 +16,12 @@ public class EnemyHandler : MonoBehaviour
             collision.gameObject.SetActive(false);
             Invoke("Die", 2.0f);
         }
+
+        if (collision.gameObject.tag == "Spike")
+        {
+            //anim.Play("enemyGiggle", 0);
+            Invoke("Die", 0);
+        }
     }
 
     void Die()
